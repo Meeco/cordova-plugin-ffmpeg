@@ -16,6 +16,7 @@ public class FFMpeg extends CordovaPlugin {
                 @Override
                 String result = String.format("Done out=%s", Config.getLastCommandOutput());
                 public void apply(long executionId, int returnCode) {
+                    String result = String.format("Done out=%s", Config.getLastCommandOutput());
                     if (returnCode == RETURN_CODE_SUCCESS)
                         callbackContext.success(result);
                     else
