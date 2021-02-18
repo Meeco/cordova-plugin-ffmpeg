@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import com.arthenica.mobileffmpeg.ExecuteCallback;
 import com.arthenica.mobileffmpeg.FFmpeg;
 import com.arthenica.mobileffmpeg.Config;
+import com.arthenica.mobileffmpeg.FFprobe;
+import com.arthenica.mobileffmpeg.MediaInformation;
 import com.arthenica.mobileffmpeg.Statistics;
 import com.arthenica.mobileffmpeg.StatisticsCallback;
 
@@ -69,6 +71,15 @@ public class FFMpeg extends CordovaPlugin {
                 }
             });
             this.callbackForExecution.put("" + executionId , callbackContext);
+            return true;
+        } else if(action.equals("probe")) {
+            MediaInformation info = FFprobe.getMediaInformation(data.getString(0));
+            int returnCode = Config.getLastReturnCode();
+            if(returnCode == RETURN_CODE_SUCCESS) {
+                callbackContext.success(info.getAllProperties());
+            } else {
+                callbackContext.error(Config.getLastCommandOutput());
+            }
             return true;
         } else return false;
     }

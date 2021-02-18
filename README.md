@@ -39,6 +39,33 @@ ffmpeg.exec(
 );
 ```
 
+You can also run the `FFProbe` command to get video information:
+
+```js
+ffmpeg.probe(
+  "somefile.mp4",
+  (result) => {
+    console.log("Video details:");
+    console.log(result.format.bit_rate);
+    console.log(result.format.duration);
+    console.log(result.format.filename);
+    console.log(result.format.format_name);
+    console.log(result.format.nb_programs);
+    console.log(result.format.nb_streams);
+    console.log(result.format.probe_score);
+    console.log(result.format.size);
+    console.log(result.format.start_time);
+
+    // You also get details about the video/audio streams of the file
+    console.log(result.streams[0].codec_name); // e.g. h264
+    console.log(result.streams[0].codec_type); // e.g. 'video'
+    console.log(result.streams[1].codec_name); // e.g. aac
+    console.log(result.streams[1].codec_type); // e.g. 'audio'
+  },
+  (error) => alert(error)
+);
+```
+
 Note, that the plugin callback is executed multiple times with status updates - you can tell if
 the command result completed by checking `status.complete === true`
 
