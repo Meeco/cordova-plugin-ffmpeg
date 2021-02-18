@@ -1,7 +1,7 @@
 /*global cordova, module*/
 
 module.exports = {
-    exec: function (cmd, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "FFMpeg", "exec", [cmd]);
+    exec: function (cmd, statusCallback, errorCallback) {
+        cordova.exec(statusCallback, errorCallback, "FFMpeg", "exec", [cmd]);
     }
 };
