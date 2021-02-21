@@ -16,7 +16,7 @@ import com.arthenica.mobileffmpeg.StatisticsCallback;
 import java.util.HashMap;
 
 import static com.arthenica.mobileffmpeg.Config.RETURN_CODE_SUCCESS;
- // ref: https://github.com/tanersener/mobile-ffmpeg/wiki/Android
+// ref: https://github.com/tanersener/mobile-ffmpeg/wiki/Android
 public class FFMpeg extends CordovaPlugin {
 
     boolean statisticsCallbackEnabled = false;
@@ -54,7 +54,6 @@ public class FFMpeg extends CordovaPlugin {
         if (action.equals("exec")) {
             long executionId = FFmpeg.executeAsync(data.getString(0), new ExecuteCallback() {
                 @Override
-                String result = String.format("Done out=%s", Config.getLastCommandOutput());
                 public void apply(long executionId, int returnCode) {
                     String result = String.format("Done out=%s", Config.getLastCommandOutput());
                     if (returnCode == RETURN_CODE_SUCCESS) {
